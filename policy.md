@@ -1,5 +1,5 @@
 # intro
-[reference] (https://www.vaultproject.io/docs/concepts/policies.html)
+[reference](https://www.vaultproject.io/docs/concepts/policies.html)
 
 * Everything in Vault is path base, as for policies
 * Deny by default, an empty policy grant nothing
