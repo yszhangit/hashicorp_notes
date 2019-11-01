@@ -20,6 +20,10 @@ Just like secrets, identities have leases associated with them. This means that 
 ### create user
 `vault write auth/userpass/users/yzhang policies=default password=something`
 
+`default` policy provide basic premission, it allow user to view it's authentication properties, renew/revoke its own token, manage its own cubbyhole
+
+* cubbyhole, a  secret engine enable by default, has its path scoped to user token, when it expires, cubbyhole is destroyed. Also unlike the kv secrets engine, because the cubbyhole's lifetime is linked to that of an authentication token, there is no concept of a TTL or refresh interval for values contained in the token's cubbyhole. Writing to a key in the cubbyhole secrets engine will completely replace the old value. (link)[https://www.vaultproject.io/docs/secrets/cubbyhole/index.html]
+
 there's no UI option
 
 ### list users
