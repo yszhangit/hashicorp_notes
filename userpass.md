@@ -1,11 +1,44 @@
-# enable auth method
+# auth
+* auth method
+
+Vault support multiple authentication methods, username/password, LDAP, Github etc.
+
+* token
+
+Vault verify your identity and then generating a token to associate with that identity, token then used for subsequent access.
+
+* auth leases
+
+Just like secrets, identities have leases associated with them. This means that you must reauthenticate after the given lease period to continue accessing Vault. Identities can be renewed without having to completely reauthenticate: `vault token renew <token>`
+
+
+## Create user
+
+### enable "userpass" auth method
 `vault auth enable userpass`
 
-# create user
+### create user
 `vault write auth/userpass/users/yzhang policies=default password=something`
 
 there's no UI option
-# use it to login
+
+### list users
+`vault  kv list  auth/userpass/users`
+* query user
+
+```
+vault  kv get auth/userpass/users/yzhang
+======= Data =======
+Key            Value
+---            -----
+bound_cidrs    []
+max_ttl        0
+policies       [admins]
+ttl            0
+```
+
+
+## user login
 ### CLI
 
 [doc](https://www.vaultproject.io/docs/commands/login.html)
@@ -20,20 +53,6 @@ or
 `.vault_token` create in $HOME, dont need to specify token afterwards
 
 
-
-* list users
-`vault  kv list  auth/userpass/users`
-
-```
-vault  kv get auth/userpass/users/yzhang
-======= Data =======
-Key            Value
----            -----
-bound_cidrs    []
-max_ttl        0
-policies       [admins]
-ttl            0
-```
 
 ### API
 [doc](https://www.vaultproject.io/api/auth/userpass/index.html)
@@ -73,7 +92,7 @@ curl --request POST --data '{"password":"something"} \
 
 ```
 
-* simple payload
+* use payload
 ```
 cat yzhang_pwd.json 
 {
