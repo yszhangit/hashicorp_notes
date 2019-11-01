@@ -7,12 +7,37 @@
 there's no UI option
 # use it to login
 ### CLI
+
+[doc](https://www.vaultproject.io/docs/commands/login.html)
+
+
 `vault login -method=userpass username=yzhang` will prompt password
+
 or
+
 `vault login -method=userpass username=yzhang password=something`
 
 `.vault_token` create in $HOME, dont need to specify token afterwards
+
+
+
+* list users
+`vault  kv list  auth/userpass/users`
+
+```
+vault  kv get auth/userpass/users/yzhang
+======= Data =======
+Key            Value
+---            -----
+bound_cidrs    []
+max_ttl        0
+policies       [admins]
+ttl            0
+```
+
 ### API
+[doc](https://www.vaultproject.io/api/auth/userpass/index.html)
+
 ```
 curl --request POST --data '{"password":"something"} \
     http://127.0.0.1:8200/v1/auth/userpass/login/yzhang \
@@ -47,4 +72,15 @@ curl --request POST --data '{"password":"something"} \
 }
 
 ```
+
+* simple payload
+```
+cat yzhang_pwd.json 
+{
+  "password": "yinshu"
+}
+
+$ curl --request POST --data @yzhang_pwd.json http://127.0.0.1:8200/v1/auth/userpass/login/yzhang | jq '.'
+```
+
 
