@@ -18,6 +18,29 @@ the backend store of "token" auth method is called "token store". "The token sto
 ### API
 pass token to header `X-Vault-Token: <token>`
 
+
+## create token
+`vault token create -policy=my-policy -policy=other-policy`
+
+## view token
+```
+vault token lookup
+vault token lookup <token>
+vault token lookup -accessor <accessor>
+```
+## renew
+```
+vault token renew 
+vault token renew <token>
+vault token renew -increment=30m 
+ ```
+ 
+ ## revoke
+ ```
+ vault token revoke <token>
+ vault token revoke -accessor <accessor>
+ ```
+
 # Hierarchies and orphan tokens
 when token holder(user) create new token, it become children of origical token, when parent token is revoded, all children token and their leases are revoked.
 
