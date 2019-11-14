@@ -77,3 +77,11 @@ foo    bar
 
 
 ```
+# test ansible
+https://github.com/TerryHowe/ansible-modules-hashivault
+
+ubuntu fix:
+```
+sudo ln -s /usr/local/lib/python2.7/dist-packages/ansible/modules/hashivault /usr/lib/python2.7/dist-packages/ansible/modules/hashivault
+sudo ln -s /usr/local/lib/python2.7/dist-packages/ansible/module_utils/hashivault.py /usr/lib/python2.7/dist-packages/ansible/module_utils/hashivault.py
+```
