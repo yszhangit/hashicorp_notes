@@ -1,5 +1,7 @@
 # 2 nodes setup
-[ref](https://devopscube.com/setup-consul-cluster-guide/)
+[simple guide](https://devopscube.com/setup-consul-cluster-guide/)
+[offical guide](https://learn.hashicorp.com/consul/datacenter-deploy/deployment-guide)
+
 
 # files/dir
 unzip consul and put under `/usr/local/bin`
